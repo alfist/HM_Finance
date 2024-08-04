@@ -114,7 +114,7 @@
               <tr>
                 <td class="text-center">{{ $no++ }}</td>
                 <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
-                <td>{{ $t->kategori->kategori }}</td>
+                <td>{{ $t->kategori ? $t->kategori->kategori : '-' }}</td>
                 <td>{{ $t->keterangan }}</td>
                 <td class="text-center">
                   @if($t->jenis == "Pemasukan")
@@ -173,7 +173,7 @@
                               <select class="form-control py-0" required="required" name="kategori" style="width: 100%">
                                 <option value="">Pilih</option>
                                 @foreach($kategori as $k)
-                                <option {{ ($t->kategori->id == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
+                                <option {{ ($t->kategori ? $t->kategori->id : '' == $k->id ? "selected='selected'" : "") }}  value="{{ $k->id }}">{{ $k->kategori }}</option>
                                 @endforeach
                               </select>
                             </div>

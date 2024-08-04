@@ -50,8 +50,8 @@
         <div class="nav-header bg-white text-center">
             <div class="brand-logo">
                 <a href="{{ url('/home') }}">
-                    <b class="logo-abbr"><img src="{{ asset('gambar/sistem/logo1.png')}}" alt=""> </b>
-                    <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo1.png') }}" alt=""></span>
+                    <b class="logo-abbr"><img src="{{ asset('gambar/sistem/logo3d.png')}}" alt=""> </b>
+                    <span class="logo-compact"><img src="{{ asset('gambar/sistem/logo3d.png') }}" alt=""></span>
                     <span class="brand-title">
                         <img src="{{ asset('gambar/sistem/logo3d.png')}}" alt="" style="width: 30%"> 
                         <span class="text-black ml-2">HM<b>Finance</b></span>
@@ -100,9 +100,6 @@
 
                                       <hr class="my-2">
 
-                                      <li>
-                                          <a href="{{ route('password') }}"><i class="icon-lock"></i> <span>Ganti Password</span></a>
-                                      </li>
                                       <li>
                                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
