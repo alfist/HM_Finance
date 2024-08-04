@@ -166,12 +166,6 @@
                 @endif
 
                 <li>
-                    <a href="{{ route('password') }}" aria-expanded="false">
-                        <i class="icon-lock menu-icon mr-3"></i><span class="nav-text">Ganti Password</span>
-                    </a>
-                </li>
-
-                <li>
                     <a href="{{ route('logout') }}" aria-expanded="false" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <i class="icon-logout menu-icon mr-3"></i><span class="nav-text">Log Out</span>
                     </a>
@@ -194,7 +188,7 @@
 
     <div class="footer">
         <div class="copyright">
-            <p>Copyright &copy; Aplikasi Keuangan Menggunakan Laravel. by <a href="" target="_blank"></a> {{ date('Y') }}</p>
+            <p>Copyright &copy; PT. Hikami Mandiri Indonesia <a href="" target="_blank"></a> {{ date('Y') }}</p>
         </div>
     </div>
 </div>

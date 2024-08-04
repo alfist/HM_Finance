@@ -3,11 +3,18 @@
 <head>
   <title>Laporan Keuangan</title>
   <link rel="stylesheet" href="{{ asset('asset_admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }} ">
+  <style>
+table, tr, td {
+  border: 1px solid;
+}
+</style>
+
 </head>
 <body>
 
   <center>
-    <h4>LAPORAN KEUANGAN</h4>
+  <h4>PT. HIKAMI MANDIRI INDONESIA</h4>
+    <h4>LAPORAN KEUANGAN </h4>
   </center>
 
   <table>
