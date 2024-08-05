@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Login - {{ config('app.name', 'Laravel') }}</title>
+    <title>Login - Aplikasi Monitoring dan Pelaporan Keuangan</title>
 
-    <link rel="icon" type="image/png" href="{{ asset('gambar/sistem/pavicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('gambar/sistem/logo3d.png') }}">
 
     <link href="{{ asset('asset_admin/plugins/pg-calendar/css/pignose.calendar.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('asset_admin/plugins/chartist/css/chartist.min.css') }}">
