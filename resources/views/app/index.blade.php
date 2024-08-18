@@ -42,13 +42,7 @@
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="card gradient-7">
-          <div class="card-body">
-            <h3 class="card-title text-white">Seluruh Pemasukan</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($seluruh_pemasukan->total)." ,-" }}</h3>
-              <p class="text-white mb-0">Semua</p>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -89,13 +83,7 @@
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="card gradient-6">
-          <div class="card-body">
-            <h3 class="card-title text-white">Seluruh Pengeluaran</h3>
-            <div class="d-inline-block">
-              <h3 class="text-white">{{ "Rp. ".number_format($seluruh_pengeluaran->total)." ,-" }}</h3>
-              <p class="text-white mb-0">Semua</p>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>

@@ -79,7 +79,7 @@
                                 <h4 class="mt-4">Monitoring dan Pelaporan<br> Keuangan</h3>
                             </div>
 
-                            <h4>Login</h4>
+                            <h4>Login to your account</h4>
 
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
