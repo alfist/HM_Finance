@@ -45,8 +45,17 @@
 
                   @csrf
                   <div class="form-group">
-                    <label>Nama Kategori</label>
+                    <label>Nama Jenis</label>
                     <input type="text" name="nama" required="required" class="form-control" placeholder="Nama Kategori ..">
+                  </div>
+
+                  <div class="form-group">
+                    <label>Kategori</label>
+                    <select class="form-control" required="required" name="jenis">
+                      <option value="">Pilih</option>
+                      <option value="Pemasukan">Pemasukan</option>
+                      <option value="Pengeluaran">Pengeluaran</option>
+                    </select>
                   </div>
 
                 </div>
@@ -67,7 +76,8 @@
             <thead>
               <tr>
                 <th width="1%">NO</th>
-                <th>NAMA KATEGORI</th>
+                <th>JENIS</th>
+                <th>KATEGORI</th>
                 <th class="text-center" width="10%">OPSI</th>
               </tr>
             </thead>
@@ -79,6 +89,7 @@
               <tr>
                 <td class="text-center">{{ $no++ }}</td>
                 <td>{{ $k->kategori }}</td>
+                <td>{{ $k->jenis }}</td>
                 <td>    
 
                   @if($k->id != 1)
@@ -104,16 +115,22 @@
                             </button>
                           </div>
                           <div class="modal-body">
-
                             @csrf
                             {{ method_field('PUT') }}
-
-                            <div class="form-group" style="width:100%">
-                              <label>Nama Kategori</label>
+                            <div class="form-group">
+                              <label>Jenis</label>
                               <input type="hidden" name="id" value="{{ $k->id }}">
-                              <input type="text" name="nama" required="required" class="form-control" placeholder="Nama Kategori .." value="{{ $k->kategori }}" style="width:100%">
+                              <input type="text" name="nama" required="required" class="form-control form-modif" placeholder="Nama Kategori .." value="{{ $k->kategori }}" style="width:100%; min-height: 30px;">
                             </div>
 
+                            <div class="form-group">
+                              <label>Kategori</label>
+                              <select class="form-control form-modif" required="required" name="jenis" style="width:100%; min-height: 30px;">
+                                <option value="">Pilih</option>
+                                <option value="Pemasukan" @if($k->jenis == "Pemasukan") selected @endif>Pemasukan</option>
+                                <option value="Pengeluaran" @if($k->jenis == "Pengeluaran") selected @endif>Pengeluaran</option>
+                              </select>
+                           </div>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="ti-close m-r-5 f-s-12"></i> Tutup</button>

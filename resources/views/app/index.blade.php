@@ -7,7 +7,7 @@
   <div class="container-fluid mt-3">
 
     <div class="row">
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="card gradient-7">
           <div class="card-body">
             <h3 class="card-title text-white">Pemasukan Hari Ini</h3>
@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="card gradient-7">
           <div class="card-body">
             <h3 class="card-title text-white">Pemasukan Bulan Ini</h3>
@@ -29,7 +29,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="card gradient-7">
           <div class="card-body">
             <h3 class="card-title text-white">Pemasukan Tahun Ini</h3>
@@ -40,7 +40,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="card gradient-7">
           
         </div>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="row">
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="card gradient-6">
           <div class="card-body">
             <h3 class="card-title text-white">Pengeluaran Hari Ini</h3>
@@ -59,7 +59,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="card gradient-6">
           <div class="card-body">
             <h3 class="card-title text-white">Pengeluaran Bulan Ini</h3>
@@ -70,7 +70,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="card gradient-6">
           <div class="card-body">
             <h3 class="card-title text-white">Pengeluaran Tahun Ini</h3>
@@ -81,7 +81,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-sm-6">
+      <div class="col-lg-4 col-sm-6">
         <div class="card gradient-6">
           
         </div>
@@ -163,8 +163,35 @@
 
    </section>
 
-
-
+   <section class="col-lg-12 mb-3" style="background-color: #ffffff">
+       <div class="card-header pt-4">
+          <h4 class="card-title">Data History Pengguna</h4>
+        </div>
+      <div class="table-responsive">
+        <table class="table table-bordered" id="table-datatable">
+          <thead>
+            <tr>
+              <th width="1%">NO</th>
+              <th>Akun</th>
+              <th>Fitur</th>
+              <th>Keterangan</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($logs as $key=>$log)
+            <tr>
+                <td class="text-center">{{ $key + 1 }}</td>
+                <td>{{ $log->name }}</td>
+                <td>{{ $log->fitur }}</td>
+                <td>{{ $log->payload }}</td>
+                <td>{{ $log->created_at }}</td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
+   </section>
  </div>
 
 

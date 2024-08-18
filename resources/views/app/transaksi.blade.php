@@ -49,7 +49,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label>Jenis</label>
+                    <label>Kategori</label>
                     <select class="form-control" required="required" name="jenis">
                       <option value="">Pilih</option>
                       <option value="Pemasukan">Pemasukan</option>
@@ -58,7 +58,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label>Kategori</label>
+                    <label>Jenis</label>
                     <select class="form-control" required="required" name="kategori">
                       <option value="">Pilih</option>
                       @foreach($kategori as $k)
@@ -87,11 +87,47 @@
           </div>
         </form>
 
+        <form method="GET" action="{{ route('transaksi') }}">
+          @csrf
+          <div class="row">
 
-
+            <div class="col-lg-offset-2 col-lg-3">
+              <div class="form-group">
+                <label>Tanggal</label>
+                <input class="form-control daterange" placeholder="Tanggal" type="text" required="required" name="dari" value="<?php if(isset($_GET['dari'])){echo $_GET['dari'];} ?>">
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="form-group">
+                <label>Kategori</label>
+                <select class="form-control" name="jenis">
+                  <option value="">Semua</option>
+                  <option value="Pemasukan" <?php if(isset($_GET['jenis'])){ if($_GET['jenis'] == "Pemasukan"){echo "selected='selected'";} } ?>>Pemasukan</option>
+                  <option value="Pengeluaran" <?php if(isset($_GET['jenis'])){ if($_GET['jenis'] == "Pengeluaran"){echo "selected='selected'";} } ?>>Pengeluaran</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-3">
+              <div class="form-group">
+                <label>Jenis</label>
+                <select class="form-control" name="kategori">
+                  <option value="">Semua</option>
+                  @foreach($kategori as $k)
+                  <option <?php if(isset($_GET['kategori'])){ if($_GET['kategori'] == $k->id){echo "selected='selected'";} } ?> value="{{ $k->id }}">{{ $k->kategori }}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-2">
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Tampilkan" style="margin-top: 30px; height: 40px">
+              </div>
+            </div>
+          </div>
+        </form>
         
         <div class="table-responsive">
-          <table class="table table-bordered" id="table-datatable" style="width: 100%">
+          <table class="table table-bordered" id="table-datatable-no-filter" style="width: 100%">
             <thead>
               <tr>
                 <th rowspan="2" class="text-center" width="1%">NO</th>
@@ -169,7 +205,7 @@
                             </div>
 
                             <div class="form-group" style="width: 100%;margin-bottom:20px">
-                              <label>Kategori</label>
+                              <label>Kategor</label>
                               <select class="form-control py-0" required="required" name="kategori" style="width: 100%">
                                 <option value="">Pilih</option>
                                 @foreach($kategori as $k)
@@ -198,7 +234,6 @@
                       </div>
                     </div>
                   </form>
-
 
                   <!-- Modal -->
                   <form method="POST" action="{{ route('transaksi.delete',['id' => $t->id]) }}">
@@ -237,16 +272,8 @@
             </tbody>
           </table>
         </div>
-
-
       </div>
-
     </div>
-
-
-
-
-
   </div>
   <!-- #/ container -->
 </div>

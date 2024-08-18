@@ -55,7 +55,7 @@
             </div>
             <div class="col-lg-2">
               <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Tampilkan" style="margin-top: 25px">
+                <input type="submit" class="btn btn-primary" value="Tampilkan" style="margin-top: 30px">
               </div>
             </div>
 
@@ -145,7 +145,7 @@
                   <tr>
                     <td class="text-center">{{ $no++ }}</td>
                     <td class="text-center">{{ date('d-m-Y', strtotime($t->tanggal )) }}</td>
-                    <td>{{ $t->kategori->kategori }}</td>
+                    <td>{{ $t->kategori ? $t->kategori->kategori : '' }}</td>
                     <td>{{ $t->keterangan }}</td>
                     <td class="text-center">
                       @if($t->jenis == "Pemasukan")

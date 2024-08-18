@@ -9,11 +9,12 @@ use Illuminate\Support\Facades\DB;
 use App\Kategori;
 use App\Transaksi;
 use App\User;
+use App\ActivityLog;
 
 use Hash;
 use Auth;
 use File;
-
+use Carbon\Carbon;
 use App\Exports\LaporanExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
@@ -39,6 +40,12 @@ class HomeController extends Controller
     {
         $kategori = Kategori::all();
         $transaksi = Transaksi::all();
+        $logs = ActivityLog::select([
+            'users.name',
+            'activity_logs.fitur',
+            'activity_logs.payload',
+            'activity_logs.created_at',
+        ])->join('users', 'users.id', '=', 'activity_logs.user_id')->get();
         $tanggal = date('Y-m-d');
         $bulan = date('m');
         $tahun = date('Y');
@@ -101,6 +108,7 @@ class HomeController extends Controller
                 'seluruh_pengeluaran' => $seluruh_pengeluaran,
                 'kategori' => $kategori,
                 'transaksi' => $transaksi,
+                'logs' => $logs,
             ]
         );
     }
@@ -114,15 +122,23 @@ class HomeController extends Controller
     public function kategori_aksi(Request $req)
     {
         $nama = $req->input('nama');
-        Kategori::create(['kategori' => $nama]);
+        $jenis = $req->input('jenis');
+        Kategori::create(
+            [
+                'kategori' => $nama,
+                'jenis' => $jenis
+            ]
+        );
         return redirect('kategori')->with('success','Kategori telah disimpan');
     }
 
     public function kategori_update($id, Request $req)
     {
         $nama = $req->input('nama');
+        $jenis = $req->input('jenis');
         $kategori = Kategori::find($id);
         $kategori->kategori = $nama;
+        $kategori->jenis = $jenis;
         $kategori->save();
         return redirect('kategori')->with('success','Kategori telah diupdate');
     }
@@ -175,10 +191,33 @@ class HomeController extends Controller
     }
 
 
-    public function transaksi()
+    public function transaksi(Request $req)
     {
+        $dari = $req->dari;
+        $kategoriId = $req->kategori;
+        $jenisId = $req->jenis;
+
         $kategori = Kategori::orderBy('kategori','asc')->get();
-        $transaksi = Transaksi::orderBy('id','desc')->get();
+
+        $jenisByKategori = "";
+        if($jenisId){
+            $jenisByKategori = Kategori::orderBy('kategori','asc')->where('jenis', $jenisId)->get()->pluck('id');
+        }
+        $transaksi = Transaksi::orderBy('id','desc')
+            ->when($req->dari, function ($query) use ($dari) {
+                $date = explode(" - ", $dari);
+                $dari = Carbon::createFromFormat('d/m/Y', $date[0])->format('Y-m-d');
+                $sampai = Carbon::createFromFormat('d/m/Y', $date[1])->format('Y-m-d');
+
+                return $query->whereBetween('tanggal', [$dari, $sampai]);
+            })
+            ->when($req->kategori, function ($query) use ($kategoriId) {
+                return $query->where('kategori_id', $kategoriId);
+            })
+            ->when($jenisByKategori != "", function ($query) use ($jenisByKategori) {
+                return $query->whereIn('kategori_id', $jenisByKategori);
+            })
+            ->get();
         return view('app.transaksi',['transaksi' => $transaksi, 'kategori' => $kategori]);
     }
 

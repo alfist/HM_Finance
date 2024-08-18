@@ -32,6 +32,10 @@
             animation: gradient 15s ease infinite;
             transition: all .2s ease;
         }
+
+        .form-modif {
+            height: 30px !important;
+        }
     </style>
 </head>
 
@@ -243,7 +247,17 @@
             'ordering'    : false,
             'info'        : true,
             'autoWidth'   : true,
-            "pageLength": 50
+            "pageLength": 10
+        });
+
+        $('#table-datatable-no-filter').DataTable({
+            'paging'      : true,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : false,
+            'info'        : true,
+            'autoWidth'   : true,
+            "pageLength": 10
         });
 
         $('body').on('click', '.hamburger', function(){
@@ -260,6 +274,12 @@
     $('.datepicker2').datepicker({
         autoclose: true,
         format: 'yyyy/mm/dd',
+    });
+
+    $('.daterange').daterangepicker({
+        locale: {
+            format: 'DD/MM/YYYY'
+        }
     });
 
 </script>
